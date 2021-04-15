@@ -502,9 +502,13 @@ if sortann:
 		os.system(scmd)
 		os.rename(kfile,kfile+'_old')
 		os.rename('positions_%s'%(pid),kfile)
+if os.path.exists(kfile+'.gz.tbi'):
+	if not os.path.exists(kfile+'.tbi'):
+		sys.stderr.write('Copying .gz.tbi to .tbi for index.\n') # AMC added
+		os.system('cp ' + kfile+'.gz.tbi' + ' ' + kfile+'.tbi')
 if not os.path.exists(kfile+'.tbi'):
 		sys.stderr.write('Indexing file with known positions.\n')
-		kfile=pysam.tabix_index(kfile, seq_col=0, start_col=1, end_col=1)
+		kfile=pysam.tabix_index(kfile, seq_col=0, start_col=1, end_col=1, force=True,keep_original=True) # Keep original, force AMC
 		# Format for tabfile with positions:
 		# chr start strand
 ##################################
