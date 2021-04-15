@@ -47,6 +47,7 @@ if subprocess.getstatusoutput('conda')[0] != 0:
 	os.system(cmd + ' config --add channels defaults')
 	os.system(cmd + ' config --add channels bioconda')
 	os.system(cmd + ' config --add channels conda-forge')
+        os.system(cmd + ' config --set channel_priority strict')
 	os.system(cmd + ' create -n nature_protocol python=2.7 anaconda')
 	install_conda_packages(cmd)
 	print("Your conda environment has been succesfully created, now close your terminal and open a new one." + "\n" + \
@@ -59,6 +60,7 @@ else:
         os.system(cmd + ' config --add channels defaults')
         os.system(cmd + ' config --add channels bioconda')
         os.system(cmd + ' config --add channels conda-forge')
+        os.system(cmd + ' config --set channel_priority strict') # AMC
         os.system(cmd + ' create -n nature_protocol python=2.7 anaconda')
         install_conda_packages(cmd)
         print("Your conda environment has been succesfully created, now close your terminal and open a new one." + "\n" + 
