@@ -609,7 +609,8 @@ def exploreBAM(myinput):
 	d,di={},{}
 	bam=pysam.Samfile(bamfile,"rb")
 	fasta=pysam.Fastafile(fastafile)
-	ktabix=pysam.Tabixfile(kfile)
+	sys.stderr.write('Looking for file: %s\n'%(kfile))
+	ktabix=pysam.Tabixfile(kfile + '.gz')
 	lenregion=dicregions[chr]
 	if uann: tabix=pysam.Tabixfile(annfile)
 	if expos: extabix=pysam.Tabixfile(exfile)
